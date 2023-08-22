@@ -24,8 +24,7 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] != '%')
 		{
-			buf[index] = format[i];
-			index++;
+			buf[index++] = format[i];
 
 			if (index == BUFF_SIZE)
 				print_buffer(buf, &index);
@@ -34,12 +33,12 @@ int _printf(const char *format, ...)
 		else
 		{
 			print_buffer(buf, &index);
-			size = get_size(format, &i);
+			flags = get_flags(format, &i);
 			width = get_width(format, &i, args);
 			precision = get_precision(format, &i, args);
-			flags = get_flags(format, &i);
-			no_printed = handle_specifier(format, args, &i, buf, flags, width, precision, size);
+			size = get_size(format, &i);
 			i++;
+			no_printed = handle_specifier(format, args, &i, buf, flags, width, precision, size);
 			if (no_printed == -1)
 				return (-1);
 			count += no_printed;
