@@ -39,7 +39,8 @@ int _printf(const char *format, ...)
 			precision = get_precision(format, &i, args);
 			flags = get_flags(format, &i);
 			i += 1;
-			no_printed = handle_specifier(format, args, &i, buf, flags, width, precision, size);
+			no_printed = handle_specifier(format, args, &i,
+					buf, flags, width, precision, size);
 			if (no_printed == -1)
 				return (-1);
 			count += no_printed;
